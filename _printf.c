@@ -13,6 +13,7 @@
 int _printf(const char *format, ...)
 {
 int num_prt_char = 0, num = 0;
+char *str;
 va_list arg;
 va_start(arg, format);
 while (*format)
@@ -20,14 +21,13 @@ while (*format)
 if (*format == '%')
 { format++;
 switch (*format)
-{
-case 'c':
-num = va_arg(args, int);
+{ case 'c':
+num = va_arg(arg, int);
 write(STDOUT_FILENO, &num, 1);
 num_prt_char++;
 break;
 case 's':
-str = va_arg(args, char *);
+str = va_arg(arg, char *);
 if (str == NULL)
 str = "(null)";
 while (*str)

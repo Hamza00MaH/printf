@@ -32,10 +32,6 @@ while (num)
 buf[i--] = digits[num % base];
 num /= base;
 }
-if (sign == -1)
-{
-buf[i--] = '-';
-}
 }
 return (&buf[i + 1]);
 }
@@ -95,11 +91,16 @@ return (0);
 
 int handle_d_or_i(int i, va_list arg, int *num_prt_char)
 {
-char *str;
+  char *str, *min_int;
 int num;
 if (i == 'd' || i == 'i')
 {
 num = va_arg(arg, int);
+if (num == INT_MIN)
+{
+  min_int = "-2147483648";
+*num_prt_char += write(STDOUT_FILENO, min_int, strlen(min_int));
+}
 str = int_to_base(num, 10);
 *num_prt_char += write(STDOUT_FILENO, str, strlen(str));
 }

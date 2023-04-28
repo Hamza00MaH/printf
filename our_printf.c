@@ -32,6 +32,10 @@ while (num)
 buf[i--] = digits[num % base];
 num /= base;
 }
+if (sign == -1)
+{
+buf[i--] = '-';
+}
 }
 return (&buf[i + 1]);
 }

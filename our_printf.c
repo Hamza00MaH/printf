@@ -63,7 +63,7 @@ char *str;
 if (i == 'c')
 {
 c = va_arg(arg, int);
-num_prt_char += write(STDOUT_FILENO, &c, 1);
+*num_prt_char += write(STDOUT_FILENO, &c, 1);
 }
 else if (i == 's')
 {
@@ -109,7 +109,6 @@ return (-1);
 }
 return (0);
 }
-
 
 /****************************************************************************/
 
